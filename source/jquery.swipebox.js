@@ -58,6 +58,7 @@
 			} else {
 
 				$(document).on('click', selector, function (event) {
+					if (event.target.parentNode.className == 'slide current') return false;
 					plugin.refresh();
 					elements = [];
 					var index, relType, relVal;
@@ -190,8 +191,8 @@
 
 				// Reset dimensions on mobile orientation change
 				if ("onorientationchange" in window) {
-					if (!window.addEventListener) {
 
+					if (!window.addEventListener) {
 						window.attachEvent("orientationchange", function () {
 							if (window.orientation == 0) {
 								width = winWidth;
@@ -201,19 +202,19 @@
 								height = winWidth;
 							}
 						});
-
 					} else {
 						window.addEventListener("orientationchange", function () {
-							if (window.orientation == 0) {
+							if (window.orientation === 0) {
 								width = winWidth;
 								height = winHeight;
-							} else if (window.orientation == 90 || window.orientation == -90) {
+							} else if (window.orientation === 90 || window.orientation === -90) {
 								width = winHeight;
 								height = winWidth;
 							}
 						}, false);
-
 					}
+
+
 
 				} else {
 
